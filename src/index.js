@@ -1,6 +1,39 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
+
+const skills = [
+  {
+    skill: "HTML+CSS",
+    level: "advanced",
+    color: "#2662EA"
+  },
+  {
+    skill: "JavaScript",
+    level: "advanced",
+    color: "#EFD81D"
+  },
+  {
+    skill: "Web Design",
+    level: "advanced",
+    color: "#C3DCAF"
+  },
+  {
+    skill: "Git and GitHub",
+    level: "intermediate",
+    color: "#E84F33"
+  },
+  {
+    skill: "React",
+    level: "advanced",
+    color: "#60DAFB"
+  },
+  {
+    skill: "Svelte",
+    level: "beginner",
+    color: "#FF3B00"
+  }
+];
 function App() {
   return <Container />;
 }
@@ -33,22 +66,28 @@ function Intro() {
 }
 function SkillsContainer() {
   return (
+    // <div className="skill-list">
+    //   <Skill skill="Node.js" icon="💪" bgColor="blue" />
+    //   <Skill skill="Javascript" icon="💪" bgColor="cyan" />
+    //   <Skill skill="css" icon="💪" bgColor="yellow" />
+    //   <Skill skill="HTML" icon="💪" bgColor="pink" />
+    //   <Skill skill="Git and GitHub" icon="💪" bgColor="violet" />
+    //   <Skill skill="React" icon="💪" bgColor="red" />
+    // </div>
+    //Updating to v2
     <div className="skill-list">
-      <Skill skill="Node.js" icon="💪" bgColor="blue" />
-      <Skill skill="Javascript" icon="💪" bgColor="cyan" />
-      <Skill skill="css" icon="💪" bgColor="yellow" />
-      <Skill skill="HTML" icon="💪" bgColor="pink" />
-      <Skill skill="Git and GitHub" icon="💪" bgColor="violet" />
-      <Skill skill="React" icon="💪" bgColor="red" />
+      {skills.map((skill)=>{
+        return <Skill skill={skill} key="skill.skill" />
+      })}
     </div>
   );
 }
 
-function Skill(props) {
+function Skill({skill}) {
   return (
-    <div className="skill" style={{ backgroundColor: props.bgColor }}>
-      <span>{props.skill}</span>
-      <span>{props.icon}</span>
+    <div className="skill" style={{ backgroundColor: skill.color }}>
+      <span>{skill.skill}</span>
+      <span>{skill.level==="advanced"?"💪": skill.level==="intermediate"?"👍":"👶"}</span>
     </div>
   );
 }
